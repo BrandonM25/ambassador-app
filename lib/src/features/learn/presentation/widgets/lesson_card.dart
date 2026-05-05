@@ -16,7 +16,7 @@ class LessonCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(lesson.title, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.ivory, fontWeight: FontWeight.w600)),
+          Text(lesson.title, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.softIvory, fontWeight: FontWeight.w600)),
           const SizedBox(height: 10),
           Text(lesson.summary, maxLines: 2, overflow: TextOverflow.ellipsis),
           const SizedBox(height: 14),
@@ -25,11 +25,11 @@ class LessonCard extends StatelessWidget {
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(999),
-                  child: LinearProgressIndicator(value: lesson.progress, minHeight: 7, backgroundColor: AppColors.navy, valueColor: const AlwaysStoppedAnimation(AppColors.gold)),
+                  child: LinearProgressIndicator(value: lesson.progress, minHeight: 7, backgroundColor: AppColors.graphiteBlack, valueColor: const AlwaysStoppedAnimation(AppColors.champagneGold)),
                 ),
               ),
               const SizedBox(width: 10),
-              Text(lesson.duration, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.slate)),
+              Text(lesson.duration, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.slateSteel)),
             ],
           ),
         ],
