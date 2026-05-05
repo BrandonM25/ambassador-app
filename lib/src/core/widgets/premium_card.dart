@@ -34,19 +34,15 @@ class _PremiumCardState extends State<PremiumCard> {
           duration: const Duration(milliseconds: 260),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppTheme.radiusMd),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [AppColors.card.withValues(alpha: 0.96), AppColors.midnight.withValues(alpha: 0.92)],
+              colors: [AppColors.cardLift, AppColors.cardDeep],
             ),
             border: Border.all(color: AppColors.glass),
             boxShadow: [
-              BoxShadow(
-                color: AppColors.gold.withValues(alpha: _pressed ? 0.1 : 0.06),
-                blurRadius: _pressed ? 26 : 18,
-                spreadRadius: -4,
-                offset: const Offset(0, 10),
-              ),
+              BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 26, spreadRadius: -7, offset: const Offset(0, 12)),
+              BoxShadow(color: AppColors.champagneGold.withValues(alpha: _pressed ? 0.16 : 0.1), blurRadius: _pressed ? 28 : 20, spreadRadius: -8),
             ],
           ),
           child: Material(
