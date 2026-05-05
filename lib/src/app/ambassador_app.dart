@@ -13,12 +13,7 @@ class AmbassadorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AppStrings.appName,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.dark(),
-      home: const SplashScreen(),
-    );
+    return MaterialApp(title: AppStrings.appName, debugShowCheckedModeBanner: false, theme: AppTheme.dark(), home: const SplashScreen());
   }
 }
 
@@ -31,24 +26,33 @@ class AppScaffold extends StatefulWidget {
 
 class _AppScaffoldState extends State<AppScaffold> {
   int index = 0;
-
   final screens = const [HomeScreen(), LearnScreen(), PracticeScreen(), ProfileScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: index, children: screens),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: index,
-        backgroundColor: AppColors.charcoal,
-        indicatorColor: AppColors.gold.withValues(alpha: 0.2),
-        onDestinationSelected: (value) => setState(() => index = value),
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.menu_book_outlined), label: 'Learn'),
-          NavigationDestination(icon: Icon(Icons.forum_outlined), label: 'Practice'),
-          NavigationDestination(icon: Icon(Icons.person_outline), label: 'Profile'),
-        ],
+      body: Container(
+        decoration: const BoxDecoration(gradient: AppColors.primaryGradient),
+        child: AnimatedSwitcher(duration: const Duration(milliseconds: 340), child: KeyedSubtree(key: ValueKey(index), child: screens[index])),
+      ),
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(AppTheme.radiusLg),
+          child: NavigationBar(
+            height: 68,
+            selectedIndex: index,
+            backgroundColor: AppColors.charcoal.withValues(alpha: 0.85),
+            indicatorColor: AppColors.gold.withValues(alpha: 0.18),
+            onDestinationSelected: (value) => setState(() => index = value),
+            destinations: const [
+              NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home_rounded), label: 'Home'),
+              NavigationDestination(icon: Icon(Icons.menu_book_outlined), selectedIcon: Icon(Icons.menu_book_rounded), label: 'Learn'),
+              NavigationDestination(icon: Icon(Icons.forum_outlined), selectedIcon: Icon(Icons.forum_rounded), label: 'Practice'),
+              NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profile'),
+            ],
+          ),
+        ),
       ),
     );
   }

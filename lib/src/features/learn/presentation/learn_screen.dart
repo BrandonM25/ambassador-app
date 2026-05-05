@@ -1,3 +1,4 @@
+import 'package:ambassador_app/src/core/theme/app_theme.dart';
 import 'package:ambassador_app/src/core/widgets/section_header.dart';
 import 'package:ambassador_app/src/features/learn/data/lesson_data.dart';
 import 'package:ambassador_app/src/features/learn/presentation/lesson_detail_screen.dart';
@@ -10,20 +11,19 @@ class LearnScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final groupedLessons = {
-      for (final category in lessonCategories)
-        category: lessons.where((lesson) => lesson.categoryId == category.id).toList(),
+      for (final category in lessonCategories) category: lessons.where((lesson) => lesson.categoryId == category.id).toList(),
     };
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(AppTheme.spaceLg),
         child: ListView(
           children: [
-            const SectionHeader(title: 'Teaching Library'),
-            const SizedBox(height: 14),
+            const SectionHeader(title: 'Teaching Library', subtitle: 'Structured pathways for conviction and confidence.'),
+            const SizedBox(height: AppTheme.spaceMd),
             ...groupedLessons.entries.map(
               (entry) => Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: AppTheme.spaceLg),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -41,7 +41,7 @@ class LearnScreen extends StatelessWidget {
                             crossAxisCount: columns,
                             mainAxisSpacing: 12,
                             crossAxisSpacing: 12,
-                            childAspectRatio: isMobile ? 2 : 1.55,
+                            childAspectRatio: isMobile ? 2.12 : 1.62,
                           ),
                           itemBuilder: (context, index) {
                             final lesson = entry.value[index];
