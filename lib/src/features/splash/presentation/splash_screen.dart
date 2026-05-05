@@ -11,31 +11,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
+  late final AnimationController _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1300))..repeat(reverse: true);
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1800))..repeat(reverse: true);
-    Timer(const Duration(milliseconds: 2100), () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const OnboardingScreen())));
+    Timer(const Duration(milliseconds: 1800), () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const OnboardingScreen())));
   }
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Scaffold(
-      body: Center(
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (_, __) => Container(
-            width: 140,
-            height: 140,
-            decoration: BoxDecoration(
-              color: cs.surface,
-              borderRadius: BorderRadius.circular(44),
-              boxShadow: [BoxShadow(color: cs.primary.withValues(alpha: .3), blurRadius: 32, spreadRadius: -10)],
+      body: Container(
+        decoration: BoxDecoration(gradient: RadialGradient(colors: [cs.surfaceContainerHighest.withValues(alpha: .5), Theme.of(context).scaffoldBackgroundColor], radius: 1.2)),
+        child: Center(
+          child: AnimatedBuilder(
+            animation: _controller,
+            builder: (_, __) => Container(
+              width: 148,
+              height: 148,
+              decoration: BoxDecoration(color: cs.surface, borderRadius: BorderRadius.circular(42), boxShadow: [BoxShadow(color: cs.primary.withValues(alpha: .35), blurRadius: 32)]),
+              child: Icon(Icons.shield_rounded, color: cs.primary, size: 56 + (_controller.value * 8)),
             ),
-            child: Icon(Icons.shield_moon_rounded, color: cs.primary, size: 58 + (_controller.value * 5)),
           ),
         ),
       ),

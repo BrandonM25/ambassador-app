@@ -16,17 +16,27 @@ class PremiumCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppTheme.radiusMd),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Material(
-          color: cs.surface.withValues(alpha: .88),
+          color: cs.surface.withValues(alpha: .84),
           child: InkWell(
             onTap: onTap,
             child: Container(
               padding: padding,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppTheme.radiusMd),
-                border: Border.all(color: cs.onSurface.withValues(alpha: .06)),
-                boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .14), blurRadius: 20, offset: const Offset(0, 8))],
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    cs.surface.withValues(alpha: .98),
+                    cs.surfaceContainerHighest.withValues(alpha: .88),
+                  ],
+                ),
+                border: Border.all(color: cs.outlineVariant.withValues(alpha: .5)),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withValues(alpha: .12), blurRadius: 24, offset: const Offset(0, 10)),
+                ],
               ),
               child: child,
             ),
