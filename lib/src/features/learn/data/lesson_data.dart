@@ -1,0 +1,19 @@
+import 'package:ambassador_app/src/features/learn/domain/lesson.dart';
+
+const lessonCategories = [
+  LessonCategory(id: 'gospel', title: 'Gospel'),
+  LessonCategory(id: 'jesus', title: 'Jesus Christ'),
+  LessonCategory(id: 'repentance-faith', title: 'Repentance & Faith'),
+  LessonCategory(id: 'evangelism', title: 'Evangelism'),
+  LessonCategory(id: 'eternal-security', title: 'Eternal Security'),
+  LessonCategory(id: 'bible-reliability', title: 'Bible Reliability'),
+];
+
+const lessons = [
+  Lesson(id: 'what-is-the-gospel', title: 'What Is the Gospel?', categoryId: 'gospel', duration: '8 min', progress: 0, summary: 'High-level overview of the Gospel message and its core elements.', scriptureReferences: ['1 Corinthians 15:1-4', 'Romans 1:16'], keyDoctrine: ['Salvation is by grace through faith, not human merit.'], commonErrors: ['Reducing the Gospel to self-improvement or moralism.'], evangelismApplication: ['Practice explaining the Gospel in two minutes.'], practiceQuestions: ['How would you define the Gospel in one sentence?']),
+  Lesson(id: 'who-is-jesus-christ', title: 'Who Is Jesus Christ?', categoryId: 'jesus', duration: '9 min', progress: 0, summary: 'Concise identity study: fully God, fully man, promised Messiah.', scriptureReferences: ['John 1:1-14', 'Colossians 1:15-20'], keyDoctrine: ['Jesus Christ is Lord, Savior, and the only mediator.'], commonErrors: ['Treating Jesus as only a teacher and not the risen Lord.'], evangelismApplication: ['Ask: “Who do you believe Jesus is?” and listen first.'], practiceQuestions: ['Why does Jesus’ identity matter for salvation?']),
+  Lesson(id: 'repentance-and-faith', title: 'Repentance and Faith', categoryId: 'repentance-faith', duration: '7 min', progress: 0, summary: 'Short framework for how repentance and faith relate in conversion.', scriptureReferences: ['Mark 1:15', 'Acts 20:21'], keyDoctrine: ['Repentance and faith are inseparable responses to the Gospel.'], commonErrors: ['Defining repentance as behavior reform alone.'], evangelismApplication: ['Invite clear trust in Christ, not vague spirituality.'], practiceQuestions: ['How would you explain repentance to a friend?']),
+  Lesson(id: 'why-evangelism', title: 'Why Evangelism?', categoryId: 'evangelism', duration: '6 min', progress: 0, summary: 'Motivation for evangelism from Christ’s command and love for neighbor.', scriptureReferences: ['Matthew 28:18-20', 'Romans 10:14-15'], keyDoctrine: ['Evangelism is an act of obedience and compassion.'], commonErrors: ['Assuming evangelism is optional for mature believers.'], evangelismApplication: ['Pray for one person and initiate one Gospel conversation.'], practiceQuestions: ['What are two biblical reasons to evangelize?']),
+  Lesson(id: 'assurance-eternal-security', title: 'Assurance and Eternal Security', categoryId: 'eternal-security', duration: '8 min', progress: 0, summary: 'Starter overview of assurance grounded in Christ’s finished work.', scriptureReferences: ['John 10:27-29', '1 John 5:11-13'], keyDoctrine: ['Believers rest in God’s preserving grace and promises.'], commonErrors: ['Basing assurance on emotions alone.'], evangelismApplication: ['Address fear with Scripture and Christ-centered hope.'], practiceQuestions: ['How would you encourage a doubting believer?']),
+  Lesson(id: 'why-trust-the-bible', title: 'Why Trust the Bible?', categoryId: 'bible-reliability', duration: '10 min', progress: 0, summary: 'Brief case for Scripture’s reliability and authority.', scriptureReferences: ['2 Timothy 3:16-17', '2 Peter 1:20-21'], keyDoctrine: ['Scripture is inspired, truthful, and sufficient.'], commonErrors: ['Assuming reliability requires blind faith without evidence.'], evangelismApplication: ['Use one short passage and ask thoughtful follow-ups.'], practiceQuestions: ['What makes the Bible trustworthy?']),
+];
