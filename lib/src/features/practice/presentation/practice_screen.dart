@@ -1,4 +1,5 @@
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
+import 'package:ambassador_app/src/core/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 
 class PracticeScreen extends StatelessWidget {
@@ -10,11 +11,13 @@ class PracticeScreen extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(20),
         children: const [
-          PremiumCard(child: ListTile(title: Text('Conversation Colloquy'), subtitle: Text('Role-play pastoral dialogue'))),
+          SectionHeader(title: 'Practice Studio', subtitle: 'Tactile drills designed for real conversations.'),
           SizedBox(height: 12),
-          PremiumCard(child: ListTile(title: Text('Apologetic Disputation'), subtitle: Text('Answer difficult objections'))),
+          PremiumCard(child: ListTile(leading: Icon(Icons.chat_bubble_rounded), title: Text('Conversation Colloquy'), subtitle: Text('Role-play pastoral dialogue'))),
           SizedBox(height: 12),
-          PremiumCard(child: ListTile(title: Text('Pastoral Feedback Atelier'), subtitle: Text('Reflect and refine delivery'))),
+          PremiumCard(child: ListTile(leading: Icon(Icons.gavel_rounded), title: Text('Apologetic Disputation'), subtitle: Text('Answer difficult objections'))),
+          SizedBox(height: 12),
+          PremiumCard(child: ListTile(leading: Icon(Icons.rate_review_rounded), title: Text('Pastoral Feedback Atelier'), subtitle: Text('Reflect and refine delivery'))),
         ],
       ),
     );
