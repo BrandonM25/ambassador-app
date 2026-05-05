@@ -1,4 +1,5 @@
 import 'package:ambassador_app/src/app/ambassador_app.dart';
+import 'package:ambassador_app/src/core/widgets/crest_logo.dart';
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
 import 'package:flutter/material.dart';
 
@@ -14,21 +15,23 @@ class OnboardingScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            Container(height: 210, decoration: BoxDecoration(borderRadius: BorderRadius.circular(36), gradient: LinearGradient(colors: [cs.surfaceContainerHighest, cs.surface])), child: const Center(child: Icon(Icons.shield_moon_rounded, size: 80))),
-            const SizedBox(height: 18),
-            Text('Welcome to Ambassador', style: text.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
-            const SizedBox(height: 8),
-            Text('A calmer, glanceable formation experience with modular pathways for daily rhythm.', style: text.bodyLarge),
-            const SizedBox(height: 14),
-            const Wrap(spacing: 8, runSpacing: 8, children: [Chip(label: Text('Learn')), Chip(label: Text('Practice')), Chip(label: Text('Track Growth'))]),
-            const SizedBox(height: 14),
-            const PremiumCard(child: ListTile(leading: Icon(Icons.grid_view_rounded), title: Text('Modular dashboard tiles'))),
+            Container(
+              height: 280,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(36), gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [cs.surfaceContainerHighest.withValues(alpha: .86), cs.surface.withValues(alpha: .7)])),
+              child: const Center(child: CrestLogo(size: 130)),
+            ),
+            const SizedBox(height: 24),
+            Text('Flagship formation, redesigned.', style: text.headlineMedium),
             const SizedBox(height: 10),
-            const PremiumCard(child: ListTile(leading: Icon(Icons.animation_rounded), title: Text('Expressive motion + tactile surfaces'))),
-            const SizedBox(height: 10),
-            const PremiumCard(child: ListTile(leading: Icon(Icons.palette_outlined), title: Text('Warm light mode + graphite dark mode'))),
+            Text('A premium, modular rhythm for learning, practice, and growth.', style: text.bodyLarge),
             const SizedBox(height: 18),
-            FilledButton(onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const AppScaffold())), child: const Text('Enter Dashboard')),
+            const Wrap(spacing: 8, runSpacing: 8, children: [Chip(label: Text('Expressive Motion')), Chip(label: Text('Tonal Surfaces')), Chip(label: Text('Focused Flow'))]),
+            const SizedBox(height: 16),
+            const PremiumCard(child: ListTile(leading: Icon(Icons.dashboard_customize_rounded), title: Text('Asymmetric modular dashboard'))),
+            const SizedBox(height: 12),
+            const PremiumCard(child: ListTile(leading: Icon(Icons.blur_on_rounded), title: Text('Atmospheric depth and glass layers'))),
+            const SizedBox(height: 24),
+            FilledButton(onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const AppScaffold())), child: const Text('Enter Ambassador')),
           ],
         ),
       ),

@@ -1,76 +1,65 @@
-import 'package:ambassador_app/src/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const double radiusSm = 14;
-  static const double radiusMd = 22;
-  static const double radiusLg = 30;
-  static const double radiusXl = 38;
-  static const double spaceSm = 8;
-  static const double spaceMd = 16;
-  static const double spaceLg = 24;
+  static const double radiusSm = 18;
+  static const double radiusMd = 30;
+  static const double radiusLg = 36;
+  static const double spaceSm = 10;
+  static const double spaceMd = 18;
+  static const double spaceLg = 26;
 
   static ThemeData dark() {
     const scheme = ColorScheme.dark(
-      primary: AppColors.accentAmberDark,
-      secondary: AppColors.accentSageDark,
-      tertiary: AppColors.accentBlueDark,
-      surface: AppColors.darkPrimarySurface,
-      surfaceContainerHighest: AppColors.darkSecondarySurface,
-      onSurface: AppColors.darkPrimaryText,
-      onSurfaceVariant: AppColors.darkSecondaryText,
-      outlineVariant: Color(0x3DF3F2EE),
+      primary: Color(0xFFDCC8A6),
+      secondary: Color(0xFF9FB0B8),
+      tertiary: Color(0xFF8CA2BF),
+      surface: Color(0xFF171A20),
+      surfaceContainerHighest: Color(0xFF252A32),
+      onSurface: Color(0xFFF4F0E8),
+      onSurfaceVariant: Color(0xFFB7BDC9),
     );
     return _baseTheme(scheme, true);
   }
 
   static ThemeData light() {
     const scheme = ColorScheme.light(
-      primary: AppColors.accentAmberLight,
-      secondary: AppColors.accentSageLight,
-      tertiary: AppColors.accentBlueLight,
-      surface: AppColors.lightPrimarySurface,
-      surfaceContainerHighest: AppColors.lightSecondarySurface,
-      onSurface: AppColors.lightPrimaryText,
-      onSurfaceVariant: AppColors.lightSecondaryText,
-      outlineVariant: Color(0x331C1D22),
+      primary: Color(0xFF3B3C42),
+      secondary: Color(0xFF5A606D),
+      tertiary: Color(0xFF6B7891),
+      surface: Color(0xFFF2EEE7),
+      surfaceContainerHighest: Color(0xFFE7E2DA),
+      onSurface: Color(0xFF1D212A),
+      onSurfaceVariant: Color(0xFF5D6572),
     );
     return _baseTheme(scheme, false);
   }
 
   static ThemeData _baseTheme(ColorScheme scheme, bool isDark) {
-    final background = isDark ? AppColors.darkBackground : AppColors.lightBackground;
-    final elevated = isDark ? AppColors.darkElevatedSurface : AppColors.lightElevatedSurface;
-
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
-      scaffoldBackgroundColor: background,
-      appBarTheme: AppBarTheme(backgroundColor: Colors.transparent, foregroundColor: scheme.onSurface, centerTitle: false),
-      cardTheme: CardThemeData(
-        color: scheme.surface,
-        elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radiusMd)),
-      ),
+      scaffoldBackgroundColor: isDark ? const Color(0xFF0F1218) : const Color(0xFFFCFAF6),
+      textTheme: Typography.material2021().black.apply(bodyColor: scheme.onSurface, displayColor: scheme.onSurface).copyWith(
+            displaySmall: const TextStyle(fontWeight: FontWeight.w800, letterSpacing: -0.8),
+            headlineMedium: const TextStyle(fontWeight: FontWeight.w800, letterSpacing: -0.5),
+            titleLarge: const TextStyle(fontWeight: FontWeight.w700),
+          ),
       chipTheme: ChipThemeData(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
         side: BorderSide.none,
-        backgroundColor: scheme.surfaceContainerHighest,
-        selectedColor: elevated,
+        backgroundColor: scheme.surfaceContainerHighest.withValues(alpha: .9),
+        selectedColor: scheme.primary.withValues(alpha: .22),
         labelStyle: TextStyle(color: scheme.onSurfaceVariant, fontWeight: FontWeight.w600),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          minimumSize: const Size.fromHeight(54),
+          foregroundColor: isDark ? Colors.black : Colors.white,
+          backgroundColor: scheme.primary,
+          minimumSize: const Size.fromHeight(58),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
           textStyle: const TextStyle(fontWeight: FontWeight.w700),
         ),
       ),
-      textTheme: Typography.material2021().black.apply(
-            bodyColor: scheme.onSurface,
-            displayColor: scheme.onSurface,
-          ),
     );
   }
 }

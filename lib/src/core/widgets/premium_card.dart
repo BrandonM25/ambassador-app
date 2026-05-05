@@ -4,7 +4,7 @@ import 'package:ambassador_app/src/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class PremiumCard extends StatelessWidget {
-  const PremiumCard({super.key, required this.child, this.onTap, this.padding = const EdgeInsets.all(16)});
+  const PremiumCard({super.key, required this.child, this.onTap, this.padding = const EdgeInsets.all(18)});
 
   final Widget child;
   final VoidCallback? onTap;
@@ -16,26 +16,18 @@ class PremiumCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppTheme.radiusMd),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
         child: Material(
-          color: cs.surface.withValues(alpha: .84),
+          color: Colors.transparent,
           child: InkWell(
             onTap: onTap,
-            child: Container(
+            child: Ink(
               padding: padding,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppTheme.radiusMd),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    cs.surface.withValues(alpha: .98),
-                    cs.surfaceContainerHighest.withValues(alpha: .88),
-                  ],
-                ),
-                border: Border.all(color: cs.outlineVariant.withValues(alpha: .5)),
+                gradient: LinearGradient(colors: [cs.surface.withValues(alpha: .84), cs.surfaceContainerHighest.withValues(alpha: .65)]),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withValues(alpha: .12), blurRadius: 24, offset: const Offset(0, 10)),
+                  BoxShadow(color: Colors.black.withValues(alpha: .2), blurRadius: 24, offset: const Offset(0, 14)),
                 ],
               ),
               child: child,
