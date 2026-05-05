@@ -9,9 +9,9 @@ class PracticeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(22),
         children: const [
-          SectionHeader(title: 'Practice Studio', subtitle: 'Tactile drills designed for real conversations.'),
+          SectionHeader(title: 'Practice Studio', subtitle: 'Polished drills for confident real-world dialogue.'),
           SizedBox(height: 12),
           PremiumCard(child: ListTile(leading: Icon(Icons.chat_bubble_rounded), title: Text('Conversation Colloquy'), subtitle: Text('Role-play pastoral dialogue'))),
           SizedBox(height: 12),

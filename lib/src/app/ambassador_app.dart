@@ -35,50 +35,28 @@ class _AppScaffoldState extends State<AppScaffold> {
     (icon: Icons.forum_rounded, label: 'Practice'),
     (icon: Icons.tune_rounded, label: 'Settings'),
   ];
-
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Scaffold(
-      body: AnimatedSwitcher(duration: const Duration(milliseconds: 340), switchInCurve: Curves.easeOutCubic, switchOutCurve: Curves.easeInCubic, child: KeyedSubtree(key: ValueKey(index), child: screens[index])),
+      body: Container(
+        decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [cs.tertiary.withValues(alpha: .08), Theme.of(context).scaffoldBackgroundColor, cs.primary.withValues(alpha: .05)])),
+        child: AnimatedSwitcher(duration: const Duration(milliseconds: 380), child: KeyedSubtree(key: ValueKey(index), child: screens[index])),
+      ),
       bottomNavigationBar: SafeArea(
-        minimum: const EdgeInsets.fromLTRB(18, 0, 18, 14),
+        minimum: const EdgeInsets.fromLTRB(16, 0, 16, 14),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(999),
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+            filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
             child: Container(
               padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: cs.surface.withValues(alpha: .72),
-                borderRadius: BorderRadius.circular(999),
-                border: Border.all(color: cs.outlineVariant.withValues(alpha: .5)),
-              ),
-              child: Row(
-                children: List.generate(navItems.length, (i) {
-                  final selected = i == index;
-                  final item = navItems[i];
-                  return Expanded(
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
-                      curve: Curves.easeOut,
-                      margin: const EdgeInsets.symmetric(horizontal: 2),
-                      decoration: BoxDecoration(
-                        color: selected ? cs.primary.withValues(alpha: .18) : Colors.transparent,
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(999),
-                        onTap: () => setState(() => index = i),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(item.icon, color: selected ? cs.primary : cs.onSurfaceVariant), const SizedBox(height: 4), Text(item.label, style: TextStyle(fontSize: 12, color: selected ? cs.onSurface : cs.onSurfaceVariant, fontWeight: FontWeight.w600))]),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-              ),
+              decoration: BoxDecoration(color: cs.surface.withValues(alpha: .74), borderRadius: BorderRadius.circular(999), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .2), blurRadius: 28, offset: const Offset(0, 12))]),
+              child: Row(children: List.generate(navItems.length, (i) {
+                final s = i == index;
+                final item = navItems[i];
+                return Expanded(child: GestureDetector(onTap: () => setState(() => index = i), child: AnimatedContainer(duration: const Duration(milliseconds: 260), padding: const EdgeInsets.symmetric(vertical: 12), decoration: BoxDecoration(color: s ? cs.primary.withValues(alpha: .2) : Colors.transparent, borderRadius: BorderRadius.circular(999)), child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(item.icon, color: s ? cs.primary : cs.onSurfaceVariant), Text(item.label, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: s ? cs.onSurface : cs.onSurfaceVariant))]))));
+              })),
             ),
           ),
         ),

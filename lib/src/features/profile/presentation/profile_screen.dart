@@ -14,9 +14,9 @@ class ProfileScreen extends ConsumerWidget {
     final isLight = mode == ThemeMode.light;
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(22),
         children: [
-          const SectionHeader(title: 'Profile & Settings', subtitle: 'Tune your visual environment and preferences.'),
+          const SectionHeader(title: 'Profile & Settings', subtitle: 'Refined controls for your Ambassador experience.'),
           const SizedBox(height: 12),
           PremiumCard(
             child: SwitchListTile(

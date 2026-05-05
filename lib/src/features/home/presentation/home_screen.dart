@@ -1,3 +1,4 @@
+import 'package:ambassador_app/src/core/widgets/crest_logo.dart';
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
 import 'package:ambassador_app/src/core/widgets/section_header.dart';
 import 'package:flutter/material.dart';
@@ -13,27 +14,31 @@ class HomeScreen extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          const SectionHeader(title: 'Today', subtitle: 'Your next best step in one glance.'),
+          Row(children: [const CrestLogo(size: 38), const SizedBox(width: 12), Text('Ambassador', style: text.titleLarge)]),
+          const SizedBox(height: 12),
+          const SectionHeader(title: 'Today', subtitle: 'Your flagship daily formation cockpit.'),
           const SizedBox(height: 12),
           PremiumCard(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text('Formation Dashboard', style: text.headlineSmall?.copyWith(fontWeight: FontWeight.w800)),
               const SizedBox(height: 8),
-              Text('Continue your learning flow with three focused modules.', style: text.bodyMedium),
-              const SizedBox(height: 14),
+              Text('Three modules curated for today.', style: text.bodyMedium),
+              const SizedBox(height: 16),
               const Wrap(spacing: 8, runSpacing: 8, children: [Chip(label: Text('Scripture')), Chip(label: Text('Doctrine')), Chip(label: Text('Dialogue'))]),
             ]),
           ),
           const SizedBox(height: 12),
-          Row(children: [
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Expanded(child: _MetricTile(label: 'Streak', value: '12d', icon: Icons.local_fire_department_rounded, color: cs.primary)),
             const SizedBox(width: 12),
-            Expanded(child: _MetricTile(label: 'Completed', value: '68%', icon: Icons.auto_graph_rounded, color: cs.secondary)),
+            Expanded(
+              child: Column(children: [
+                _MetricTile(label: 'Completion', value: '68%', icon: Icons.auto_graph_rounded, color: cs.secondary),
+                const SizedBox(height: 12),
+                const PremiumCard(child: ListTile(dense: true, leading: Icon(Icons.bolt_rounded), title: Text('Quick Sprint'))),
+              ]),
+            ),
           ]),
-          const SizedBox(height: 12),
-          const PremiumCard(child: ListTile(leading: Icon(Icons.play_circle_fill_rounded), title: Text('Gospel in 90 seconds'), subtitle: Text('7 min • Continue'))),
-          const SizedBox(height: 12),
-          const PremiumCard(child: ListTile(leading: Icon(Icons.record_voice_over_rounded), title: Text('Guided response rehearsal'), subtitle: Text('Practice tone, pacing, clarity'))),
         ],
       ),
     );
@@ -49,8 +54,6 @@ class _MetricTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Icon(icon, color: color), const SizedBox(height: 8), Text(value, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)), Text(label)]),
-    );
+    return PremiumCard(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Icon(icon, color: color), const SizedBox(height: 10), Text(value, style: Theme.of(context).textTheme.headlineSmall), Text(label)]));
   }
 }
