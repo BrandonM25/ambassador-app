@@ -1,8 +1,6 @@
 import 'package:ambassador_app/src/app/ambassador_app.dart';
-import 'package:ambassador_app/src/core/theme/app_colors.dart';
 import 'package:ambassador_app/src/core/theme/app_theme.dart';
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
-import 'package:ambassador_app/src/core/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -10,53 +8,29 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cards = [
-      ('Doctrine & Formation', Icons.auto_stories_outlined),
-      ('Guided Dialogue Practice', Icons.forum_outlined),
-      ('Confessional Clarity', Icons.shield_outlined),
-    ];
-
+    final text = Theme.of(context).textTheme;
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(AppTheme.spaceLg),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SectionHeader(
-                title: 'Welcome to Ambassador Academy',
-                subtitle: 'A premium theological formation experience with timeless guidance and practical discipline.',
-              ),
-              const SizedBox(height: AppTheme.spaceLg),
-              Expanded(
-                child: ListView.separated(
-                  itemCount: cards.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: AppTheme.spaceMd),
-                  itemBuilder: (context, i) => PremiumCard(
-                    child: Row(
-                      children: [
-                        Icon(cards[i].$2, color: AppColors.champagneGold),
-                        const SizedBox(width: 12),
-                        Expanded(child: Text(cards[i].$1, style: Theme.of(context).textTheme.titleMedium)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppTheme.radiusMd),
-                  gradient: const LinearGradient(colors: [AppColors.champagneGold, AppColors.bronzeAccent]),
-                ),
-                child: FilledButton(
-                  onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const AppScaffold())),
-                  style: FilledButton.styleFrom(backgroundColor: AppColors.champagneGold, foregroundColor: AppColors.graphiteBlack),
-                  child: const Text('Enter the Academy'),
-                ),
-              ),
-            ],
-          ),
+          padding: const EdgeInsets.all(20),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Ambassador', style: text.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
+            const SizedBox(height: 8),
+            Text('Train with clarity, practice with confidence.', style: text.bodyLarge),
+            const SizedBox(height: 18),
+            const Wrap(spacing: 8, runSpacing: 8, children: [Chip(label: Text('Doctrine')), Chip(label: Text('Practice')), Chip(label: Text('Daily Rhythm'))]),
+            const SizedBox(height: 18),
+            const Expanded(
+              child: Column(children: [
+                PremiumCard(child: ListTile(leading: Icon(Icons.layers_rounded), title: Text('Modular daily dashboard'))),
+                SizedBox(height: 12),
+                PremiumCard(child: ListTile(leading: Icon(Icons.bolt_rounded), title: Text('Glanceable progress hierarchy'))),
+                SizedBox(height: 12),
+                PremiumCard(child: ListTile(leading: Icon(Icons.motion_photos_auto_rounded), title: Text('Expressive Material motion'))),
+              ]),
+            ),
+            FilledButton(onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const AppScaffold())), child: const Text('Get started')),
+          ]),
         ),
       ),
     );

@@ -1,7 +1,4 @@
-import 'package:ambassador_app/src/core/theme/app_colors.dart';
-import 'package:ambassador_app/src/core/theme/app_theme.dart';
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
-import 'package:ambassador_app/src/core/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,38 +6,25 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(AppTheme.spaceLg),
-        child: ListView(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(AppTheme.spaceLg),
-              decoration: BoxDecoration(
-                gradient: AppColors.heroGradient,
-                borderRadius: BorderRadius.circular(AppTheme.radiusLg),
-                border: Border.all(color: AppColors.glass),
-                boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.35), blurRadius: 34, spreadRadius: -10, offset: const Offset(0, 18))],
-              ),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('AMBASSADOR ACADEMY', style: Theme.of(context).textTheme.bodyMedium?.copyWith(letterSpacing: 1.8, color: AppColors.champagneGold)),
-                const SizedBox(height: AppTheme.spaceSm),
-                Text('Formed in truth.\nCommissioned with grace.', style: Theme.of(context).textTheme.displaySmall),
-                const SizedBox(height: AppTheme.spaceMd),
-                Text('Daily theological training through Scripture study, doctrinal depth, and pastoral communication drills.', style: Theme.of(context).textTheme.bodyLarge),
-                const SizedBox(height: AppTheme.spaceLg),
-                FilledButton(onPressed: () {}, child: const Text('Continue Formation')),
-              ]),
-            ),
-            const SizedBox(height: AppTheme.spaceLg),
-            const SectionHeader(title: 'Today\'s Rule of Study', subtitle: 'Curated disciplines for consistent growth.'),
-            const SizedBox(height: AppTheme.spaceMd),
-            const PremiumCard(child: Text('Lecture: The Gospel in 90 Seconds')),
-            const SizedBox(height: AppTheme.spaceMd),
-            const PremiumCard(child: Text('Dialogue Drill: Speak with Conviction & Charity')),
-          ],
+      child: ListView(padding: const EdgeInsets.all(20), children: [
+        PremiumCard(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Today', style: text.labelLarge),
+            const SizedBox(height: 8),
+            Text('Formation Dashboard', style: text.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
+            const SizedBox(height: 8),
+            Text('Three focused modules. Continue where you left off.', style: text.bodyMedium),
+            const SizedBox(height: 16),
+            const Wrap(spacing: 8, children: [Chip(label: Text('Scripture')), Chip(label: Text('Doctrine')), Chip(label: Text('Dialogue'))]),
+          ]),
         ),
-      ),
+        const SizedBox(height: 12),
+        const PremiumCard(child: ListTile(leading: Icon(Icons.play_circle_fill_rounded), title: Text('Gospel in 90 seconds'), subtitle: Text('7 min'))),
+        const SizedBox(height: 12),
+        const PremiumCard(child: ListTile(leading: Icon(Icons.forum_rounded), title: Text('Guided conversation drill'), subtitle: Text('Practice tone + clarity'))),
+      ]),
     );
   }
 }

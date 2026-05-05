@@ -1,19 +1,30 @@
+import 'dart:ui';
+
 import 'package:ambassador_app/src/core/constants/app_strings.dart';
-import 'package:ambassador_app/src/core/theme/app_colors.dart';
 import 'package:ambassador_app/src/core/theme/app_theme.dart';
+import 'package:ambassador_app/src/core/theme/theme_controller.dart';
 import 'package:ambassador_app/src/features/home/presentation/home_screen.dart';
 import 'package:ambassador_app/src/features/learn/presentation/learn_screen.dart';
 import 'package:ambassador_app/src/features/practice/presentation/practice_screen.dart';
 import 'package:ambassador_app/src/features/profile/presentation/profile_screen.dart';
 import 'package:ambassador_app/src/features/splash/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AmbassadorApp extends StatelessWidget {
+class AmbassadorApp extends ConsumerWidget {
   const AmbassadorApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(title: AppStrings.appName, debugShowCheckedModeBanner: false, theme: AppTheme.dark(), home: const SplashScreen());
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mode = ref.watch(themeModeProvider);
+    return MaterialApp(
+      title: AppStrings.appName,
+      debugShowCheckedModeBanner: false,
+      themeMode: mode,
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      home: const SplashScreen(),
+    );
   }
 }
 
@@ -30,27 +41,28 @@ class _AppScaffoldState extends State<AppScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(gradient: AppColors.primaryGradient),
-        child: AnimatedSwitcher(duration: const Duration(milliseconds: 340), child: KeyedSubtree(key: ValueKey(index), child: screens[index])),
-      ),
+      body: AnimatedSwitcher(duration: const Duration(milliseconds: 300), child: KeyedSubtree(key: ValueKey(index), child: screens[index])),
       bottomNavigationBar: SafeArea(
-        minimum: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+        minimum: const EdgeInsets.fromLTRB(16, 0, 16, 14),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(AppTheme.radiusLg),
-          child: NavigationBar(
-            height: 68,
-            selectedIndex: index,
-            backgroundColor: AppColors.cardDeep.withValues(alpha: 0.88),
-            indicatorColor: AppColors.champagneGold.withValues(alpha: 0.2),
-            onDestinationSelected: (value) => setState(() => index = value),
-            destinations: const [
-              NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home_rounded), label: 'Academy'),
-              NavigationDestination(icon: Icon(Icons.menu_book_outlined), selectedIcon: Icon(Icons.menu_book_rounded), label: 'Learn'),
-              NavigationDestination(icon: Icon(Icons.forum_outlined), selectedIcon: Icon(Icons.forum_rounded), label: 'Practice'),
-              NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profile'),
-            ],
+          borderRadius: BorderRadius.circular(AppTheme.radiusXl),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+            child: NavigationBar(
+              selectedIndex: index,
+              height: 74,
+              backgroundColor: cs.surface.withValues(alpha: .78),
+              indicatorColor: cs.primary.withValues(alpha: .2),
+              onDestinationSelected: (value) => setState(() => index = value),
+              destinations: const [
+                NavigationDestination(icon: Icon(Icons.grid_view_rounded), label: 'Home'),
+                NavigationDestination(icon: Icon(Icons.menu_book_rounded), label: 'Learn'),
+                NavigationDestination(icon: Icon(Icons.record_voice_over_rounded), label: 'Practice'),
+                NavigationDestination(icon: Icon(Icons.tune_rounded), label: 'Profile'),
+              ],
+            ),
           ),
         ),
       ),
