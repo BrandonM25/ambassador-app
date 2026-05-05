@@ -25,8 +25,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text('AMBASSADOR ACADEMY', style: Theme.of(context).textTheme.bodyMedium?.copyWith(letterSpacing: 1.8, color: AppColors.champagneGold)),
                 const SizedBox(height: AppTheme.spaceSm),
-                Text('Formed in truth.
-Commissioned with grace.', style: Theme.of(context).textTheme.displaySmall),
+                Text('Formed in truth.\nCommissioned with grace.', style: Theme.of(context).textTheme.displaySmall),
                 const SizedBox(height: AppTheme.spaceMd),
                 Text('Daily theological training through Scripture study, doctrinal depth, and pastoral communication drills.', style: Theme.of(context).textTheme.bodyLarge),
                 const SizedBox(height: AppTheme.spaceLg),

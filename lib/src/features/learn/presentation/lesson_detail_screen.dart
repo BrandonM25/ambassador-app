@@ -21,7 +21,7 @@ class LessonDetailScreen extends StatelessWidget {
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const SectionHeader(title: 'Lesson Progress'),
                 const SizedBox(height: 8),
-                ClipRRect(borderRadius: BorderRadius.circular(999), child: LinearProgressIndicator(value: lesson.progress, minHeight: 10, backgroundColor: AppColors.navy, valueColor: const AlwaysStoppedAnimation(AppColors.gold))),
+                ClipRRect(borderRadius: BorderRadius.circular(999), child: LinearProgressIndicator(value: lesson.progress, minHeight: 10, backgroundColor: AppColors.graphiteBlack, valueColor: const AlwaysStoppedAnimation(AppColors.champagneGold))),
                 const SizedBox(height: 8),
                 Text('Progress tracking placeholder (${(lesson.progress * 100).toInt()}% complete).'),
               ]),
@@ -60,7 +60,7 @@ class _DetailSection extends StatelessWidget {
                   child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     const Padding(
                       padding: EdgeInsets.only(top: 6),
-                      child: Icon(Icons.circle, size: 6, color: AppColors.gold),
+                      child: Icon(Icons.circle, size: 6, color: AppColors.champagneGold),
                     ),
                     const SizedBox(width: 8),
                     Expanded(child: Text(item)),
