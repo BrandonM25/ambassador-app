@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const navy = Color(0xFF091423);
-  static const deepNavy = Color(0xFF0D1A2C);
-  static const charcoal = Color(0xFF151B24);
-  static const midnight = Color(0xFF11161E);
-  static const gold = Color(0xFFC8A768);
-  static const softGold = Color(0xFFE0C693);
-  static const ivory = Color(0xFFF4F0E7);
-  static const slate = Color(0xFF97A1B5);
-  static const card = Color(0xFF1A2330);
-  static const glass = Color(0x33FFFFFF);
+  static const graphiteBlack = Color(0xFF1C1D22);
+  static const slateSteel = Color(0xFF5F616B);
+  static const softIvory = Color(0xFFF4F1EA);
+  static const champagneGold = Color(0xFFD7B26D);
+  static const bronzeAccent = Color(0xFFB78545);
+  static const sageGlow = Color(0xFFC7D09C);
+
+  static const cardDeep = Color(0xFF23252C);
+  static const cardLift = Color(0xFF2A2D35);
+  static const glass = Color(0x26F4F1EA);
 
   static const primaryGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [Color(0xFF0A1422), Color(0xFF101D30), Color(0xFF1A1D27)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xFF1C1D22), Color(0xFF22242B), Color(0xFF1A1B20)],
   );
 
   static const heroGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFF1A2433), Color(0xFF141A24), Color(0xFF2B241D)],
+    colors: [Color(0xFF2B2D35), Color(0xFF24262D), Color(0xFF332C24)],
   );
 }

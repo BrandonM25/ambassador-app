@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:ambassador_app/src/core/theme/app_colors.dart';
 import 'package:ambassador_app/src/features/onboarding/presentation/onboarding_screen.dart';
@@ -14,19 +13,14 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
   late final AnimationController _pulse;
-  late final AnimationController _rotate;
 
   @override
   void initState() {
     super.initState();
     _pulse = AnimationController(vsync: this, duration: const Duration(milliseconds: 1800))..repeat(reverse: true);
-    _rotate = AnimationController(vsync: this, duration: const Duration(seconds: 8))..repeat();
     Timer(const Duration(milliseconds: 2400), () {
       if (mounted) {
-        Navigator.of(context).pushReplacement(PageRouteBuilder(
-          pageBuilder: (_, __, ___) => const OnboardingScreen(),
-          transitionsBuilder: (_, animation, __, child) => FadeTransition(opacity: animation, child: child),
-        ));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const OnboardingScreen()));
       }
     });
   }
@@ -38,25 +32,26 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         decoration: const BoxDecoration(gradient: AppColors.primaryGradient),
         child: Center(
           child: AnimatedBuilder(
-            animation: Listenable.merge([_pulse, _rotate]),
-            builder: (context, _) {
-              return Transform.rotate(
-                angle: _rotate.value * math.pi * 2,
-                child: Container(
-                  width: 118,
-                  height: 118,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.softGold.withValues(alpha: 0.35), width: 1.1),
-                    boxShadow: [BoxShadow(color: AppColors.gold.withValues(alpha: 0.15 + (_pulse.value * 0.2)), blurRadius: 42)],
-                  ),
-                  child: Transform.rotate(
-                    angle: -_rotate.value * math.pi * 2,
-                    child: const Center(child: Text('A', style: TextStyle(fontSize: 56, fontWeight: FontWeight.w700, color: AppColors.ivory))),
-                  ),
-                ),
-              );
-            },
+            animation: _pulse,
+            builder: (context, _) => Container(
+              width: 170,
+              height: 170,
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: AppColors.champagneGold.withValues(alpha: 0.5), width: 1.3),
+                boxShadow: [BoxShadow(color: AppColors.bronzeAccent.withValues(alpha: 0.22 + (_pulse.value * 0.16)), blurRadius: 44)],
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: const [
+                  Icon(Icons.shield_outlined, color: AppColors.softIvory, size: 96),
+                  Positioned(top: 36, child: Icon(Icons.workspace_premium, color: AppColors.champagneGold, size: 22)),
+                  Positioned(bottom: 30, child: Icon(Icons.auto_awesome, color: AppColors.sageGlow, size: 12)),
+                  Text('A', style: TextStyle(fontSize: 40, fontWeight: FontWeight.w700, color: AppColors.champagneGold)),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -66,7 +61,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   @override
   void dispose() {
     _pulse.dispose();
-    _rotate.dispose();
     super.dispose();
   }
 }

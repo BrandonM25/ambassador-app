@@ -42,11 +42,11 @@ class _AppScaffoldState extends State<AppScaffold> {
           child: NavigationBar(
             height: 68,
             selectedIndex: index,
-            backgroundColor: AppColors.charcoal.withValues(alpha: 0.85),
-            indicatorColor: AppColors.gold.withValues(alpha: 0.18),
+            backgroundColor: AppColors.cardDeep.withValues(alpha: 0.88),
+            indicatorColor: AppColors.champagneGold.withValues(alpha: 0.2),
             onDestinationSelected: (value) => setState(() => index = value),
             destinations: const [
-              NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home_rounded), label: 'Home'),
+              NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home_rounded), label: 'Academy'),
               NavigationDestination(icon: Icon(Icons.menu_book_outlined), selectedIcon: Icon(Icons.menu_book_rounded), label: 'Learn'),
               NavigationDestination(icon: Icon(Icons.forum_outlined), selectedIcon: Icon(Icons.forum_rounded), label: 'Practice'),
               NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profile'),

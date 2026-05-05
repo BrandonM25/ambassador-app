@@ -1,3 +1,6 @@
+import 'package:ambassador_app/src/core/theme/app_theme.dart';
+import 'package:ambassador_app/src/core/widgets/premium_card.dart';
+import 'package:ambassador_app/src/core/widgets/section_header.dart';
 import 'package:ambassador_app/src/features/doctrine/presentation/doctrine_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -8,14 +11,17 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(AppTheme.spaceLg),
         children: [
-          Text('Profile / Settings', style: Theme.of(context).textTheme.headlineMedium),
+          const SectionHeader(title: 'Your Formation', subtitle: 'Steward your studies, convictions, and academy commitments.'),
           const SizedBox(height: 12),
-          ListTile(
-            title: const Text('Doctrine Constitution'),
-            subtitle: const Text('Concise placeholder text'),
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DoctrineScreen())),
+          PremiumCard(
+            child: ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('Doctrine Constitution'),
+              subtitle: const Text('Concise institutional confession'),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DoctrineScreen())),
+            ),
           ),
         ],
       ),
