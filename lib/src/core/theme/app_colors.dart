@@ -21,4 +21,8 @@ class AppColors {
   static const accentSageLight = Color(0xFF7F8F5F);
   static const accentBlueDark = Color(0xFF8FA8FF);
   static const accentBlueLight = Color(0xFF5C6FAE);
+
+  // Backward-compatible aliases
+  static const graphiteBlack = darkBackground;
+  static const champagneGold = accentAmberDark;
 }
