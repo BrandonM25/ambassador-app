@@ -34,7 +34,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               child: Container(
                 padding: const EdgeInsets.all(28),
                 decoration: BoxDecoration(shape: BoxShape.circle, color: cs.surface.withValues(alpha: .42), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .28), blurRadius: 42)]),
-                child: const CrestLogo(size: 124),
+                child: Image.asset(
+                  'assets/branding/ambassador_crest.png',
+                  width: 170,
+                  height: 170,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),
