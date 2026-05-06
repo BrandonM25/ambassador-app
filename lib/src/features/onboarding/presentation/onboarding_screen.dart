@@ -1,4 +1,5 @@
 import 'package:ambassador_app/src/app/ambassador_app.dart';
+import 'package:ambassador_app/src/core/widgets/crest_logo.dart';
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
 import 'package:flutter/material.dart';
 
@@ -15,14 +16,44 @@ class OnboardingScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           children: [
             Container(
-              height: 280,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(36), gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [cs.surfaceContainerHighest.withValues(alpha: .86), cs.surface.withValues(alpha: .7)])),
+              height: 300,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(36),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    cs.surfaceContainerHighest.withValues(alpha: .9),
+                    cs.surface.withValues(alpha: .74),
+                  ],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: .14),
+                    blurRadius: 30,
+                    offset: const Offset(0, 12),
+                  ),
+                ],
+              ),
               child: Center(
-                child: Image.asset(
-                  'assets/branding/ambassador_crest.png',
-                  width: 120,
-                  height: 120,
-                  fit: BoxFit.contain,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 228,
+                      height: 228,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          colors: [
+                            cs.primary.withValues(alpha: .16),
+                            cs.primary.withValues(alpha: .02),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const CrestLogo(width: 198),
+                  ],
                 ),
               ),
             ),

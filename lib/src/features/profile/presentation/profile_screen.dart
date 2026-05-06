@@ -1,4 +1,5 @@
 import 'package:ambassador_app/src/core/theme/theme_controller.dart';
+import 'package:ambassador_app/src/core/widgets/crest_logo.dart';
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
 import 'package:ambassador_app/src/core/widgets/section_header.dart';
 import 'package:ambassador_app/src/features/doctrine/presentation/doctrine_screen.dart';
@@ -18,12 +19,7 @@ class ProfileScreen extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Image.asset(
-                'assets/branding/ambassador_crest.png',
-                width: 30,
-                height: 30,
-                fit: BoxFit.contain,
-              ),
+              const CrestLogo(width: 46),
               const SizedBox(width: 10),
               const Expanded(
                 child: SectionHeader(

@@ -1,4 +1,5 @@
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
+import 'package:ambassador_app/src/core/widgets/crest_logo.dart';
 import 'package:ambassador_app/src/core/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 
@@ -15,12 +16,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset(
-                'assets/branding/ambassador_crest.png',
-                width: 34,
-                height: 34,
-                fit: BoxFit.contain,
-              ),
+              const CrestLogo(width: 52),
               const SizedBox(width: 12),
               Text('Ambassador', style: text.titleLarge),
             ],
