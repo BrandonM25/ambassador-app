@@ -1,5 +1,4 @@
 import 'package:ambassador_app/src/app/ambassador_app.dart';
-import 'package:ambassador_app/src/core/widgets/crest_logo.dart';
 import 'package:ambassador_app/src/core/widgets/premium_card.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,14 @@ class OnboardingScreen extends StatelessWidget {
             Container(
               height: 280,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(36), gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [cs.surfaceContainerHighest.withValues(alpha: .86), cs.surface.withValues(alpha: .7)])),
-              child: const Center(child: CrestLogo(size: 130)),
+              child: Center(
+                child: Image.asset(
+                  'assets/branding/ambassador_crest.png',
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
             const SizedBox(height: 24),
             Text('Flagship formation, redesigned.', style: text.headlineMedium),

@@ -16,7 +16,23 @@ class ProfileScreen extends ConsumerWidget {
       child: ListView(
         padding: const EdgeInsets.all(22),
         children: [
-          const SectionHeader(title: 'Profile & Settings', subtitle: 'Refined controls for your Ambassador experience.'),
+          Row(
+            children: [
+              Image.asset(
+                'assets/branding/ambassador_crest.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+              const SizedBox(width: 10),
+              const Expanded(
+                child: SectionHeader(
+                  title: 'Profile & Settings',
+                  subtitle: 'Refined controls for your Ambassador experience.',
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 12),
           PremiumCard(
             child: SwitchListTile(
